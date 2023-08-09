@@ -1,1 +1,18 @@
-# Angular
+# Angular Pluralsight
+
+Aula 4 OK
+
+# Install NPM and Node
+
+# Install Angular shape global
+
+npm install -g @angular/cli
+
+# Create project
+
+ng new NAME --prefix PREFIX
+ng new apm-new --prefix pm
+
+# Run the project in the folder
+
+npm start
