@@ -1,6 +1,6 @@
 # Angular Pluralsight
 
-Aula 4 OK
+Aula 7 OK
 
 # Install NPM and Node
 
