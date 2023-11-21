@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from './product';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -10,22 +11,23 @@ export class ProductDetailComponent implements OnInit {
   pageTitle: string = 'Product Detail';
   product: IProduct | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.pageTitle += `: ${id}`;
 
-    this.product = {
-      productId: id,
-      productName: 'Video Game Controller',
-      productCode: 'GMG-0042',
-      releaseDate: 'October 15, 2020',
-      description: 'Standard two-button video game controller',
-      price: 35.95,
-      starRating: 4.6,
-      imageUrl: 'assets/images/xbox-controller.png',
-    };
+    this.getProductsData().subscribe((productsData) => {
+      this.product = productsData.find((p) => p.productId === id);
+    });
+  }
+
+  getProductsData() {
+    return this.http.get<IProduct[]>('../../assets/api/products/products.json');
   }
 
   onBack(): void {

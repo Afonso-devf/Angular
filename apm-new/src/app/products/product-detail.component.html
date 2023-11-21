@@ -2,6 +2,20 @@
   <div class="card-header">
     {{ pageTitle + ": " + product?.productName }}
   </div>
+  <div class="card-body">
+    <p>Image:</p>
+    <img
+      [src]="product?.imageUrl"
+      [title]="product?.productName"
+      [style.width.px]="50"
+      [style.margin.px]="2"
+    />
+    <br />
+    <p>Code: {{ product?.productCode }}</p>
+    <p>Available : {{ product?.releaseDate }}</p>
+    <p>Price: {{ product?.price | currency : "BRL" : "symbol" : "1.2-2" }}</p>
+    <p>5 Star Rating: <pm-star [rating]="+product!.starRating"></pm-star></p>
+  </div>
   <div class="card-footer">
     <button
       class="btn btn-outline-secondary"
